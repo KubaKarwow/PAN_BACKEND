@@ -57,8 +57,8 @@ public class Lnc_rna {
     private String probe_name;
     @Column(name = "gene_id")
     private String gene_id;
-    @Column(name = "gene_symbol")
-    private String gene_symbol;
+    @Column(name = "gene_symbol", columnDefinition = "TEXT")
+    private String geneSymbol;
     @Column(name = "lnc_rna_completeness")
     private String lnc_rna_completeness;
     @Column(name = "dhs_type")
