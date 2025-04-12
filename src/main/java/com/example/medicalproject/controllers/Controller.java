@@ -1,5 +1,6 @@
 package com.example.medicalproject.controllers;
 
+import com.example.medicalproject.services.AdvancedSearchService;
 import com.example.medicalproject.services.GetLncRNA;
 import com.example.medicalproject.services.GetCircRNA;
 import com.example.medicalproject.services.GetMRNA;
@@ -13,11 +14,18 @@ public class Controller {
     private final GetCircRNA getCircRNA;
     private final GetLncRNA getLncRNA;
     private final GetMRNA getMRNA;
+    private final AdvancedSearchService advancedSearchService;
 
-    public Controller(GetCircRNA getCircRNA, GetLncRNA getLncRNA, GetMRNA getMRNA) {
+    public Controller(GetCircRNA getCircRNA, GetLncRNA getLncRNA, GetMRNA getMRNA, AdvancedSearchService advancedSearchService) {
         this.getCircRNA = getCircRNA;
         this.getLncRNA = getLncRNA;
         this.getMRNA = getMRNA;
+        this.advancedSearchService = advancedSearchService;
+    }
+
+    @GetMapping("/AdvancedSearch/{query}")
+    public ResponseEntity<?> getProperTableData(@PathVariable String query) {
+        return ResponseEntity.ok(advancedSearchService.getProperTableData(query));
     }
 
     //* *//
