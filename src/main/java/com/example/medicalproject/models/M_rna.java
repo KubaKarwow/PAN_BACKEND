@@ -21,6 +21,8 @@ public class M_rna {
     private String bt549_ctrl_raw;
     @Column(name = "hs578t_ctrl_raw")
     private String hs578t_ctrl_raw;
+    @Column(name = "bt474_ctrl_norm")
+    private String bt474_ctrl_norm;
     @Column(name = "mda468_ctrl_raw")
     private String mda468_ctrl_raw;
     @Column(name = "mda157_ctrl_raw")

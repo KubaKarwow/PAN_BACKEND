@@ -4,39 +4,34 @@ import com.example.medicalproject.services.AdvancedSearchService;
 import com.example.medicalproject.services.GetLncRNA;
 import com.example.medicalproject.services.GetCircRNA;
 import com.example.medicalproject.services.GetMRNA;
+import com.example.medicalproject.services.guzik2.AdvancedSearchService2;
+import com.example.medicalproject.services.guzik2.ComparisonService2;
+import com.example.medicalproject.services.guzik2.GetCircRNA2guzik;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/api/controller")
-public class Controller {
+@RequestMapping("/v1/api/controller2")
+public class Guzik2Controller {
 
-    private final GetCircRNA getCircRNA;
-    private final GetLncRNA getLncRNA;
-    private final GetMRNA getMRNA;
-    private final AdvancedSearchService advancedSearchService;
+    private final GetCircRNA2guzik getCircRNA;
+    private final AdvancedSearchService2 advancedSearchService;
+    private final ComparisonService2 comarationService;
 
-    public Controller(GetCircRNA getCircRNA, GetLncRNA getLncRNA, GetMRNA getMRNA, AdvancedSearchService advancedSearchService) {
+    public Guzik2Controller(GetCircRNA2guzik getCircRNA, AdvancedSearchService2 advancedSearchService, ComparisonService2 comarationService) {
         this.getCircRNA = getCircRNA;
-        this.getLncRNA = getLncRNA;
-        this.getMRNA = getMRNA;
         this.advancedSearchService = advancedSearchService;
+        this.comarationService = comarationService;
+    }
+
+    @GetMapping("/Comparison/{query}")
+    public ResponseEntity<?> getProperComparisonData(@PathVariable String query) {
+        return ResponseEntity.ok(comarationService.getProperTableData(query));
     }
 
     @GetMapping("/AdvancedSearch/{query}")
     public ResponseEntity<?> getProperTableData(@PathVariable String query) {
         return ResponseEntity.ok(advancedSearchService.getProperTableData(query));
-    }
-
-    //* *//
-    @GetMapping("/LncByGeneName/{geneSymbol}")
-    public ResponseEntity<?> getLncByGeneSymbol(@PathVariable String geneSymbol) {
-        return ResponseEntity.ok(getLncRNA.getLNCRNAsByGeneSymbol(geneSymbol));
-    }
-
-    @GetMapping("/MByGeneName/{geneSymbol}")
-    public ResponseEntity<?> getMByGeneSymbol(@PathVariable String geneSymbol) {
-        return ResponseEntity.ok(getMRNA.getLNCRNAsByGeneSymbol(geneSymbol));
     }
 
     // by GeneSymbol
@@ -51,24 +46,15 @@ public class Controller {
         return ResponseEntity.ok(getCircRNA.getCircRNAsByGenomicPosition(chrom,tx_start,tx_end));
     }
 
-    // By CircRNA
-    @GetMapping("/circById/{circRna}")
-    public ResponseEntity<?> getCircByCircRNA(@PathVariable String circRna) {
-        return ResponseEntity.ok(getCircRNA.getCircRNAsByCircRna(circRna));
-    }
-
     @GetMapping("/circ/{id}")
     public ResponseEntity<?> getCirc(@PathVariable Long id) {
         return ResponseEntity.ok(getCircRNA.getCircRNA(id));
     }
 
-    @GetMapping("/lnc/{id}")
-    public ResponseEntity<?> getLnc(@PathVariable Long id) {
-        return ResponseEntity.ok(getLncRNA.getLnc(id));
+    // By CircRNA
+    @GetMapping("/circById/{circRna}")
+    public ResponseEntity<?> getCircByCircRNA(@PathVariable String circRna) {
+        return ResponseEntity.ok(getCircRNA.getCircRNAsByCircRnaOrAlias(circRna));
     }
 
-    @GetMapping("/m/{id}")
-    public ResponseEntity<?> getM(@PathVariable Long id) {
-        return ResponseEntity.ok(getMRNA.getMRNA(id));
-    }
 }

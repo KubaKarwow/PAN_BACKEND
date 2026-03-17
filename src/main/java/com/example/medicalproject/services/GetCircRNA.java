@@ -27,8 +27,8 @@ public class GetCircRNA {
         return circRnaRepository.findByChromAndTxStartAndTxEnd(chrom,tx_start,tx_end);
     }
 
-    public List<Circ_rna> getCircRNAsByCircRna(String circRna) {
-        return circRnaRepository.findByCircRna(circRna);
+    public List<Circ_rna> getCircRNAsByCircRnaOrAlias(String circRna) {
+        return circRnaRepository.findByCircRnaOrAlias(circRna,circRna);
     }
 
     public List<Circ_rna> getCircRNAsByGeneSymbol(String geneName) {

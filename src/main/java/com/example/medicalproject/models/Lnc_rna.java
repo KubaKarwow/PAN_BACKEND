@@ -21,8 +21,10 @@ public class Lnc_rna {
     private String bt549_ctrl_raw;
     @Column(name = "hs578t_ctrl_raw")
     private String hs578t_ctrl_raw;
-    @Column(name = "mda468_ctrl_raw")
-    private String mda468_ctrl_raw;
+    @Column(name = "bt474_ctrl_norm")
+    private String bt474_ctrl_norm;
+    @Column(name = "mda468_ctrl_norm")
+    private String mda468_ctrl_norm;
     @Column(name = "mda157_ctrl_raw")
     private String mda157_ctrl_raw;
     @Column(name = "skbr3_ctrl_raw")
@@ -39,8 +41,8 @@ public class Lnc_rna {
     private String bt549_ctrl_norm;
     @Column(name = "hs578t_ctrl_norm")
     private String hs578t_ctrl_norm;
-    @Column(name = "mda468_ctrl_norm")
-    private String mda468_ctrl_norm;
+    @Column(name = "mda468_ctrl_raw")
+    private String mda468_ctrl_raw;
     @Column(name = "mda157_ctrl_norm")
     private String mda157_ctrl_norm;
     @Column(name = "skbr3_ctrl_norm")
