@@ -25,10 +25,10 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(
-                        new JwtFilter(jwtService),
-                        UsernamePasswordAuthenticationFilter.class
-                )
+//                .addFilterBefore(
+//                        new JwtFilter(jwtService),
+//                        UsernamePasswordAuthenticationFilter.class
+//                )
                 .build();
     }
 }
