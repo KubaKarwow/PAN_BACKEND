@@ -34,6 +34,10 @@ public class AuthController {
 
         System.out.println(request.getUsername());
         System.out.println(request.getPassword());
+
+        System.out.println(adminUsername.equals(request.getUsername()));
+        System.out.println(adminPassword.equals(request.getPassword()));
+
         if (adminUsername.equals(request.getUsername()) &&
                 adminPassword.equals(request.getPassword())) {
 
