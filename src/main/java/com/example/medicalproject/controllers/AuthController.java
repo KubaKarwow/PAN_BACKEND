@@ -27,7 +27,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
 
         System.out.println(adminUsername);
         System.out.println(adminPassword);
@@ -42,9 +42,13 @@ public class AuthController {
                 adminPassword.equals(request.getPassword())) {
 
             String token = jwtService.generateToken(request.getUsername());
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(token).toString());
         }
 
-        return ResponseEntity.status(401).build();
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername(adminUsername);
+        loginRequest.setPassword(adminPassword);
+
+        return ResponseEntity.ok(loginRequest.toString());
     }
 }
